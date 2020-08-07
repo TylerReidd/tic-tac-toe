@@ -6,44 +6,33 @@ const colors = {
  }
 //this can all be one array 
 
- const winCombo1 = [0,1,2]
- const winCombo2 = [3,4,5]
- const winCombo3 = [6,7,8]
- const winCombo4 = [0,3,6]
- const winCombo5 = [1,4,7]
- const winCombo6 = [2,5,8]
- const winCombo7 = [0,4,8]
- const winCombo8 = [2,4,6]
-
-
 // ABSOLUTE value must equal 3 to handle -1 of player 2. The winner is determiend by who's turn it is when a winning combo is discovered. 
 
 
 
 /*------Variables (state)------*/
-
-// Variables might include (board/turn/winner)
-// whats happening
+//DOOOONNNEEE
 //JS representation of the board 
-let board, turn, winner
-
-
-
+let board, turn, winner;
 
 /*------Cached Element References------*/
 
 // You might choose to put your game status here
+let gameStatus = document.getElementById('message');
+
+
+
 // HTML representation of the board "squares on the page"
-const allSq = document.getElementsByClassName('grid-item')
-const sq0 = document.getElementById('sq0')
-const sq1 = document.getElementById('sq1')
-const sq2 = document.getElementById('sq2')
-const sq3 = document.getElementById('sq3')
-const sq4 = document.getElementById('sq4')
-const sq5 = document.getElementById('sq5')
-const sq6 = document.getElementById('sq6')
-const sq7 = document.getElementById('sq7')
-const sq8 = document.getElementById('sq8')
+  allSq = document.getElementsByClassName("grid-item");
+// const sq0 = document.getElementById('sq0')
+// const sq1 = document.getElementById('sq1')
+// const sq2 = document.getElementById('sq2')
+// const sq3 = document.getElementById('sq3')
+// const sq4 = document.getElementById('sq4')
+// const sq5 = document.getElementById('sq5')
+// const sq6 = document.getElementById('sq6')
+// const sq7 = document.getElementById('sq7')
+// const sq8 = document.getElementById('sq8')
 
 
 // let a = document.getElementById('sq0')
@@ -52,12 +41,12 @@ const sq8 = document.getElementById('sq8')
 // for (let i = 0;i < board.length;i++){
       //boardHTML[i].style.backgoundColor = colors.null
 //}
-const messageEl = document.getElementById('message')
+// const messageEl = document.getElementById('message')
 
       //whats happend
-const gameStatus = null
+
       //start over
-const resetButton = init()
+const resetButton = document.getElementById('reset-button').addEventListener('click', function(){render()});
 
 
 
@@ -65,40 +54,45 @@ const resetButton = init()
           //target                   
 // All in a single const in C.A.Rs
 
-sq0.addEventListener('click', function(){sq0.style.backgroundColor = colors.playerX})
-sq1.addEventListener('click', function(){sq1.style.backgroundColor = colors.playerX})
-sq2.addEventListener('click', function(){})
-sq3.addEventListener('click', function(){})
-sq4.addEventListener('click', function(){})
-sq5.addEventListener('click', function(){})
-sq6.addEventListener('click', function(){})
-sq7.addEventListener('click', function(){changePlayer(sq7)})
-sq8.addEventListener('click', function(){changePlayer(sq8)})
-document.getElementById('reset-button').addEventListener('click', function(){init()})
+
+//DONNEEE
+
+sq0.addEventListener('click', function(){changePlayer(sq0)}); 
+sq1.addEventListener('click', function(){changePlayer(sq1)});
+sq2.addEventListener('click', function(){changePlayer(sq2)});
+sq3.addEventListener('click', function(){changePlayer(sq3)});
+sq4.addEventListener('click', function(){changePlayer(sq4)});
+sq5.addEventListener('click', function(){changePlayer(sq5)});
+sq6.addEventListener('click', function(){changePlayer(sq6)});
+sq7.addEventListener('click', function(){changePlayer(sq7)});
+sq8.addEventListener('click', function(){changePlayer(sq8)});
+document.getElementById('reset-button').addEventListener('click', function(){init()});
+
 
 // This is where you should put the event listener
 // for a mouse-click
 
 /*------Functions------*/
-function changePlayer(sq){      
-      if (turn === 1) {
-            sq.style.backgroundColor = colors.playerX;
-      } else {
+
+//DONNNEEEE
+  init()                           
+function changePlayer(sq){ 
+     if(sq.style.backgroundColor !== colors.null){
+           return gameStatus = 'Tisk, Tisk, Tisk'
+     }
+      if(turn === 1) {
+            sq.style.backgroundColor = colors.playerX 
+      } else if (turn === -1){
             sq.style.backgroundColor = colors.playerO;
       }
-      turn *= -1
-}
-
-function boardState(){
+      console.log(sq,sq.index)
+      board[sq.getAttribute("index")] = turn
+      winCombos()
+      turn *= -1;
       
 }
 
 
-
-// function init() {
-// board = true
-// messageEl.innerText('h2') = 'select square'
-// }
 
 // Some functions you might choose to use:
  
@@ -108,20 +102,21 @@ function boardState(){
 // Where you set your initial state, setting up 
 // what the board will look like upon loading
 
+//DONNEEEE!!!
 function init() {
-   turn = 1;
-   winner = null;
    board = [null, null, null, null, null, null, null, null, null];
-   return turn, winner, board;
+   turn = 1
+   gameStatus.textContent = 'Blue Player, make your move';
+   winner = null;
 }
 
-function render() {
-      if(board.includes(1) === false){
-            for(let i = 0; i < allSq.length; i++){
-                  allSq[i].style.backgroundColor = colors.null;
-            }
-      }
-}
+
+//DOOONNNEEE
+
+//       if(board.includes(1) === false){
+//            
+//       }
+// }
       // for(let i=0;i<board.length; i++) {
       //       if (board[i] === null) {
       //        sq[i] //s
@@ -133,19 +128,32 @@ function render() {
 // Set up what happens when one of the elements
 // is clicked
 //updates board, calls render function, 
-// function clickHandler(sq, ){
-//       if (turn === 1)
-//       //update the board at sq with 1 or -1 based on turn;
-//       //call the render function;
-//       //call the check winner function;
-//       //change the turn if necessary
-// }
+function clickHandler(sq, turn){
+     //if (turn === 1)
+      //update the board at sq with 1 or -1 based on turn;
+      //call the render function;
+      //call the check winner function;
+      //change the turn if necessary
+}
 
 
 // Check winner function:
 // Checks the current state of the board for
 // a winner and changes the state of the winner
 // variable if so
+function winCombos(){
+      if(board[0]+ board[1] + board[2] === 3 || board[3] + board[4] + board[5] === 3 || board[6]+ board[7] + board[8] === 3 || board[0] + board[3] + board[6] === 3 || board[1] + board[4] + board[7] === 3 || board[2] + board[5] + board[8] === 3 || board[0] + board[4] + board[8] === 3 || board[2] + board[4] + board[6] === 3) {
+            
+            gameStatus.textContent = "Blue Player Wins!!";
+            winner = playerX;
+      }
+      if(board[0]+ board[1] + board[2] === -3 || board[3] + board[4] + board[5] === -3 || board[6]+ board[7] + board[8] === -3 || board[0] + board[3] + board[6] === -3 || board[1] + board[4] + board[7] === -3 || board[2] + board[5] + board[8] === -3 || board[0] + board[4] + board[8] === -3 || board[2] + board[4] + board[6] === -3)
+            {
+                  gameStatus.textContent = "Red Player Wins!!";
+                  winner = playerO;
+      }
+      
+}
 
 
 
@@ -154,8 +162,21 @@ function render() {
 // Displays the current state of the board
 // on the page, updating the elements to reflect
 // either X or O depending on whose turn it is
-
-
+//check the state of the board FOREACH item render decides red, blue, or nothing
+function render() {    
+            for(let i = 0; i < allSq.length; i++){      
+                  allSq[i].style.backgroundColor = colors.null;
+            }
+      
+            // board.forEach((sq) => {
+            //       if (turn === 1){
+            //             sq.style.backgroundColor = colors.playerX;
+            //       } else if(turn === -1){
+            //             sq.style.backgroundColor = colors.player0;
+            //       }      
+            // });
+}
+render()
 
 // 1) Define required constants:
 // 	
