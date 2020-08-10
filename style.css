@@ -53,3 +53,8 @@ h1 {
 .grid-item {
     text-align: center;
 }
+
+#board{
+    justify-content: center;
+    margin: auto;
+}

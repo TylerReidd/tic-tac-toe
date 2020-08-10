@@ -57,9 +57,11 @@ function changePlayer(sq){
            return gameStatus = 'Tisk, Tisk, Tisk'
      }
       if(turn === 1) {
+            gameStatus.textContent = "Red Player, make your move!";
             sq.style.backgroundColor = colors.playerX 
       } else if (turn === -1){
             sq.style.backgroundColor = colors.playerO;
+            gameStatus.textContent = "Blue Player, make your move!";
       }
       console.log(sq,sq.index)
       board[sq.getAttribute("index")] = turn
@@ -75,7 +77,7 @@ function changePlayer(sq){
 function init() {
    board = [null, null, null, null, null, null, null, null, null];
    turn = 1
-   gameStatus.textContent = 'Blue Player, make your move';
+   gameStatus.textContent = 'Blue Player, make your move!';
    winner = null;
 }
 //DOOONNNEEE
@@ -83,12 +85,12 @@ function winCombos(){
       if(board[0]+ board[1] + board[2] === 3 || board[3] + board[4] + board[5] === 3 || board[6]+ board[7] + board[8] === 3 || board[0] + board[3] + board[6] === 3 || board[1] + board[4] + board[7] === 3 || board[2] + board[5] + board[8] === 3 || board[0] + board[4] + board[8] === 3 || board[2] + board[4] + board[6] === 3) {
             
             gameStatus.textContent = "Blue Player Wins!!";
-            winner = playerX;
+            winner = colors.playerX;
       }
       if(board[0]+ board[1] + board[2] === -3 || board[3] + board[4] + board[5] === -3 || board[6]+ board[7] + board[8] === -3 || board[0] + board[3] + board[6] === -3 || board[1] + board[4] + board[7] === -3 || board[2] + board[5] + board[8] === -3 || board[0] + board[4] + board[8] === -3 || board[2] + board[4] + board[6] === -3)
             {
                   gameStatus.textContent = "Red Player Wins!!";
-                  winner = playerO;
+                  winner = colors.playerO;
       }
       
 }
